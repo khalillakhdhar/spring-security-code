@@ -22,8 +22,8 @@ import com.elitetech.springsecurity.filter.JwtFilter;
 import com.elitetech.springsecurity.service.UserInfoService;
 
 @Configuration
-@EnableWebSecurity
-@EnableMethodSecurity
+@EnableWebSecurity // jwt token security
+@EnableMethodSecurity // secure methodes
 public class SecurityConfig {
 
     @Autowired

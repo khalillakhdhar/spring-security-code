@@ -1,13 +1,11 @@
 package com.elitetech.springsecurity.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,16 +14,19 @@ import com.elitetech.springsecurity.entity.UserInfo;
 import com.elitetech.springsecurity.service.JwtService;
 import com.elitetech.springsecurity.service.UserInfoService;
 
+import lombok.RequiredArgsConstructor;
+
 import java.util.List;
 @RestController
 @RequestMapping("/auth")
+@RequiredArgsConstructor
 public class UserController {
-    @Autowired
-    private UserInfoService userInfoService;
-    @Autowired
-    private AuthenticationManager authenticationManager;
-    @Autowired
-    private JwtService jwtService;
+    
+    private final UserInfoService userInfoService;
+    
+    private final AuthenticationManager authenticationManager;
+    
+    private final JwtService jwtService;
 
     @GetMapping("/welcome")
     public ResponseEntity<String> welcome(){
