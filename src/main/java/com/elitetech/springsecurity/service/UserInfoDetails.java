@@ -23,8 +23,14 @@ public class UserInfoDetails implements UserDetails {
     public UserInfoDetails(UserInfo userInfo){
        userName= userInfo.getName();
        password= userInfo.getPassword();
+       // read role and convert to list of GrantedAuthority
+       /*
+       String role= userInfo.getRoles();
+       GrantedAuthority authority= new SimpleGrantedAuthority(role);
+         authorities= Arrays.asList(authority);
+*/
        authorities= Arrays.stream(userInfo.getRoles().split(","))
-               .map(SimpleGrantedAuthority::new)
+             .map(SimpleGrantedAuthority::new)
                .collect(Collectors.toList());
     }
     @Override
